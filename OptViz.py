@@ -1,5 +1,6 @@
 from os import system
 from time import sleep
+from math import *
 import pygame
 
 def optimize(f, x, rate=0.1):
