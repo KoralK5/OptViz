@@ -44,8 +44,8 @@ while running:
 	xRend = format(x, '.4f') if -1000 < x < 1000 else format(x, '.4E')
 	yRend = format(fx, '.4f') if -1000 < fx < 1000 else format(fx, '.4E')
 
-	xText = font.render(' '*('-' not in xRend) + xRend, True, color)
-	yText = font.render(' '*('-' not in yRend) + yRend, True, color)
+	xText = font.render('x: ' + xRend, True, color)
+	yText = font.render('y: ' + yRend, True, color)
 
 	screen.blit(xText, (15, 15))
 	screen.blit(yText, (15, 45))
