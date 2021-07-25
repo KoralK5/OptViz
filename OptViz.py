@@ -9,8 +9,8 @@ def optimize(f, x, rate=0.1):
 def f(x):
 	global y; return eval(y)
 
-def draw(screen, coords):
-	pygame.draw.rect(screen, (128, 0, 0), pygame.rect.Rect(coords))
+def draw(screen, coords, color):
+	pygame.draw.rect(screen, color, pygame.rect.Rect(coords))
 
 x = float(input('x = '))
 y = input('y = ')
@@ -35,14 +35,16 @@ while running:
 	x = optimize(f, x)
 	fx = f(x)
 
+	color = ((150-fx<0)*255, (150-fx>0)*(200-fx), 0)
+
 	screen.fill((50, 50, 50))
-	draw(screen, (abs(350 - x%dims[0]), abs(150 - fx%dims[1]), 10, 10))
+	draw(screen, (abs(350 - x%dims[0]), abs(150 - fx%dims[1]), 10, 10), color)
 
 	xRend = format(x, '.4f') if -1000 < x < 1000 else format(x, '.4E')
 	yRend = format(fx, '.4f') if -1000 < fx < 1000 else format(fx, '.4E')
 
-	xText = font.render(' '*('-' not in xRend) + xRend, True, 'green')
-	yText = font.render(' '*('-' not in yRend) + yRend, True, 'green')
+	xText = font.render(' '*('-' not in xRend) + xRend, True, color)
+	yText = font.render(' '*('-' not in yRend) + yRend, True, color)
 
 	screen.blit(xText, (15, 15))
 	screen.blit(yText, (15, 45))
