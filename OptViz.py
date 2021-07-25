@@ -10,7 +10,7 @@ def f(x):
 	global y; return eval(y)
 
 def draw(screen, coords):
-	pygame.draw.rect(screen, (0, 0, 128), pygame.rect.Rect(coords))
+	pygame.draw.rect(screen, (128, 0, 0), pygame.rect.Rect(coords))
 
 x = float(input('x = '))
 y = input('y = ')
@@ -33,20 +33,19 @@ while running:
 			break
 
 	x = optimize(f, x)
-	print('\nx =', x)
-	print('y =', f(x))
+	fx = f(x)
 
 	screen.fill((50, 50, 50))
-	draw(screen, (350 - x%dims[0], 150 - f(x)%dims[1], 10, 10))
+	draw(screen, (abs(350 - x%dims[0]), abs(150 - fx%dims[1]), 10, 10))
 
-	xRend = str(round(x, 4))
-	yRend = str(round(f(x), 4))
+	xRend = format(x, '.4f') if -1000 < x < 1000 else format(x, '.4E')
+	yRend = format(fx, '.4f') if -1000 < fx < 1000 else format(fx, '.4E')
 
 	xText = font.render(' '*('-' not in xRend) + xRend, True, 'green')
 	yText = font.render(' '*('-' not in yRend) + yRend, True, 'green')
 
-	screen.blit(xText, (625, 15))
-	screen.blit(yText, (625, 45))
+	screen.blit(xText, (15, 15))
+	screen.blit(yText, (15, 45))
 	pygame.display.update()
 
 	sleep(0.1)
