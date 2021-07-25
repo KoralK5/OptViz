@@ -22,6 +22,7 @@ pygame.font.init()
 font = pygame.font.SysFont('Comic Sans MS', 30)
 pygame.display.set_caption('f(x) = ' + y)
 pygame.init()
+starter = f(x)
 
 running = True
 while running:
@@ -35,7 +36,7 @@ while running:
 	x = optimize(f, x)
 	fx = f(x)
 
-	color = ((150-fx<0)*255, (150-fx>0)*(200-fx), 0)
+	color = (255 - max(min(starter/fx, 255), 0), max(min(starter/fx, 255), 0), 0)
 
 	screen.fill((50, 50, 50))
 	draw(screen, (abs(350 - x%dims[0]), abs(150 - fx%dims[1]), 10, 10), color)
